@@ -4,7 +4,7 @@ from time import sleep
 import sys
 
 # Game invite
-print("\nWelcome to the 'Framed'! \n"
+print("\nWelcome to the 'framed'! \n"
         "You only get 9 chances to predict the movie, be a real clairvoyant! \n"
         "If not, there is no place for doltish being and you shall be HANGED!")
 time.sleep(3)
@@ -52,7 +52,7 @@ def play_loop():
         print("Hope to see you risk it all again!")
         exit()
 #conditions in game:
-def Framed():
+def framed():
     global cnt
     global show
     global movie
@@ -64,10 +64,12 @@ def Framed():
     predict = predict.strip()
     if len(predict.strip()) == 0 or len(predict.strip()) >= 2 or predict <= "9":
         print("Input is Invalid, Try again with a letter.\n")
-        Framed()
+        framed()
+
+        
     elif predict in movie:
         assumed_word.extend([predict])
-        index = movie.search(predict)
+        index = movie.find(predict)
         movie = movie[:index] + "_" + movie[index + 1:] 
         show = show[:index] + predict + show[index + 1:]
         print(show + "\n")
@@ -194,6 +196,6 @@ def Framed():
         print("Congratulations! You got the movie right!")
         play_loop()
     elif cnt != lives:
-        Framed()
+        framed()
 main()
-Framed()
+framed()
